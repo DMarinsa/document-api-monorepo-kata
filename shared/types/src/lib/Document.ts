@@ -1,5 +1,5 @@
-import { UUID } from "crypto";
-import { Status } from "./Status";
+import { UUID } from 'crypto';
+import { Status } from './Status';
 
 export interface Document {
   id: UUID;
