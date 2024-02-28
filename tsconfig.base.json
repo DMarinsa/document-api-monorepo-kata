@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@org/types": ["shared/types/src/index.ts"]
+      "@org/types": ["shared/types/src/index.ts"],
+      "shared/pg-connector": ["shared/pg-connector/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
