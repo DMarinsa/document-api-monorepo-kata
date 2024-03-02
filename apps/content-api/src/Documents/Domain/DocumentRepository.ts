@@ -1,9 +1,10 @@
 import { Document } from "@org/types";
 
+export interface Filter {
+    title?: string;
+    status?: string;
+}
 export interface DocumentRepository {
-    getDocument(id: string): Promise<Document>;
-    getDocuments(): Promise<Document[]>;
-    createDocument(document: Document): Promise<Document>;
-    updateDocument(document: Document): Promise<Document>;
-    deleteDocument(id: string): Promise<void>;
+    findPublishedDocument(id: string): Promise<Document>;
+    searchDocuments(filter: Filter): Promise<Document[]>;
 }
