@@ -17,8 +17,10 @@ CREATE TABLE IF NOT EXISTS "Documents" (
 CREATE TABLE IF NOT EXISTS "DocumentVersions" (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   authorId UUID NOT NULL REFERENCES Users(id),
+  versionNumber INT NOT NULL,
   documentId UUID NOT NULL REFERENCES Documents(id),
   content TEXT NOT NULL,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT unique_version_per_document UNIQUE (documentId, createdAt)
 );
