@@ -67,9 +67,7 @@ describe('pgConnector', () => {
 
   describe('query', () => {
     it('calls pool.connect and pool.query with the given queryConfig', async () => {
-      const queryConfig: QueryConfig = {
-        text: 'SELECT * FROM test_table'
-      };
+      const queryConfig = 'SELECT * FROM test_table';
       const expectedResult: QueryResult<any> = {
         rows: [{ id: 1, name: 'Test' }],
         rowCount: 1,
@@ -87,11 +85,9 @@ describe('pgConnector', () => {
     });
 
     it('should release the client after executing the query', async () => {
-      const queryConfig: QueryConfig = {
-        text: 'SELECT * FROM test_table'
-      };
+      const rawQuery = 'SELECT * FROM test_table';
 
-      await pgConnector.query(queryConfig);
+      await pgConnector.query(rawQuery);
 
       expect(mockPool.connect).toHaveBeenCalledTimes(1);
       expect((await mockPool.connect()).release).toHaveBeenCalledTimes(1);

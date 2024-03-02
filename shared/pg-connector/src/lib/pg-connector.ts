@@ -10,10 +10,10 @@ export class PGConnector {
     this.pool = new Pool(options);
   }
 
-  async query(queryConfig: QueryConfig): Promise<QueryResult<QueryResultRow>> {
+  async query(rawQuery: string): Promise<QueryResult<QueryResultRow>> {
     const client = await this.pool.connect();
     try {
-      return client.query(queryConfig);
+      return client.query(rawQuery);
     } finally {
       client.release();
     }
