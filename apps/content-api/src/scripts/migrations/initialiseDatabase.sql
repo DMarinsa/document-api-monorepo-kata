@@ -1,29 +1,24 @@
-CREATE TABLE IF NOT EXISTS "User" (
-  "id" UUID PRIMARY KEY,
-  "name" VARCHAR(255)
+CREATE TABLE IF NOT EXISTS "Users" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS "Document" (
-  "id" UUID PRIMARY KEY,
-  "title" VARCHAR(255),
-  "content" TEXT,
-  "createdAt" TIMESTAMP,
-  "updatedAt" TIMESTAMP,
-  "status" VARCHAR(255),
-  "authorId" UUID,
-  "lastEditorId" UUID,
-  FOREIGN KEY ("authorId") REFERENCES "User" ("id"),
-  FOREIGN KEY ("lastEditorId") REFERENCES "User" ("id")
+CREATE TABLE IF NOT EXISTS "Documents" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title VARCHAR(255) NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  status VARCHAR(255) NOT NULL DEFAULT "draft",
+  authorId UUID REFERENCES Users(id),
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  lastEditorId UUID REFERENCES Users(id) DEFAULT NULL,
+  publishedVersionId UUID REFERENCES DocumentVersions(id) DEFAULT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "DocumentVersion" (
-  "id" UUID PRIMARY KEY,
-  "versionNumber" INTEGER,
-  "content" TEXT,
-  "createdAt" TIMESTAMP,
-  "updatedAt" TIMESTAMP,
-  "documentId" UUID,
-  "authorId" UUID,
-  FOREIGN KEY ("documentId") REFERENCES "Document" ("id"),
-  FOREIGN KEY ("authorId") REFERENCES "User" ("id")
+CREATE TABLE IF NOT EXISTS "DocumentVersions" (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  authorId UUID NOT NULL REFERENCES Users(id),
+  documentId UUID NOT NULL REFERENCES Documents(id),
+  content TEXT NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT unique_version_per_document UNIQUE (documentId, createdAt)
 );
