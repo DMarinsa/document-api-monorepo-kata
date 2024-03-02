@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@org/server": ["shared/server/src/index.ts"],
       "@org/types": ["shared/types/src/index.ts"],
       "shared/pg-connector": ["shared/pg-connector/src/index.ts"]
     }
