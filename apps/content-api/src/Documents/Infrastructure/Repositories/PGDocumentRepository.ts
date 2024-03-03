@@ -1,9 +1,14 @@
 import { Document, Status } from "@org/types";
 import { DocumentRepository } from "../../Domain/DocumentRepository";
 import { PGConnector } from "@org/pg-connector";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class PgDocumentRepository implements DocumentRepository {
-    constructor(private pgConnector: PGConnector) {}
+    constructor(
+        @inject('PGConnector')
+        private pgConnector: PGConnector
+        ) {}
 
     async findPublishedDocument(id: string): Promise<Document> {
         try {

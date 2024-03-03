@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  content-api:
+    build: ./apps/content-api
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/mydatabase
+    depends_on:
+      - postgres
+  editor-api:
+    build: ./apps/editor-api
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/mydatabase
+    depends_on:
+      - postgres
+volumes:
+  postgres_data:

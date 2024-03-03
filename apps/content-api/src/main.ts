@@ -3,7 +3,7 @@ import Router from 'koa-router';
 import { registerRoutes } from './Documents/Infrastructure/routes/registerRoutes';
 
 try {
-  const port = parseInt('3001');
+  const port = parseInt(process.env.PORT);
   const router = new Router();
 
   registerRoutes(router);
