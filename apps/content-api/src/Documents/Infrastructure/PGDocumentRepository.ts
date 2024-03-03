@@ -21,7 +21,7 @@ export class PgDocumentRepository implements DocumentRepository {
             throw new Error(`Error finding document with id ${id}`);
         }
     }
-    async getAllPublished(): Promise<Document[]> {
+    async getAllPublishedDocuments(): Promise<Document[]> {
         const query = `SELECT d.id AS document_id, d.title, dv.content
         FROM Documents d
         INNER JOIN DocumentVersions dv ON d.publishedVersionId = dv.id

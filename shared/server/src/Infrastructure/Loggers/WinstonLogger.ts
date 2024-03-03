@@ -1,8 +1,6 @@
 import { Logger } from "@org/types";
 import winston, { Logger as WinstonLoggerType } from 'winston';
 
-
-
 export class WinstonLogger implements Logger {
     private readonly logger: WinstonLoggerType
 

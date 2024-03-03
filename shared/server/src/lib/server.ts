@@ -16,7 +16,6 @@ export class Server {
   private logger: Logger;
 
   constructor(private readonly port: number, router: Router) {
-    
     this.app = new Koa();
     this.logger = new WinstonLogger();
     this.app.silent = true;
@@ -61,6 +60,4 @@ export class Server {
   getHTTPServer = () => {
     return this.httpServer;
   };
-
-  
 }
