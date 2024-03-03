@@ -16,9 +16,12 @@
     "baseUrl": ".",
     "paths": {
       "@org/dependency-injection": ["shared/dependency-injection/src/index.ts"],
+      "@org/dependency-injection-manager": [
+        "shared/dependency-injection-manager/src/index.ts"
+      ],
+      "@org/pg-connector": ["shared/pg-connector/src/index.ts"],
       "@org/server": ["shared/server/src/index.ts"],
-      "@org/types": ["shared/types/src/index.ts"],
-      "@org/pg-connector": ["shared/pg-connector/src/index.ts"]
+      "@org/types": ["shared/types/src/index.ts"]
     },
     "types": ["reflect-metadata"]
   },
