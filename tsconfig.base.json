@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@org/dependency-injection": ["shared/dependency-injection/src/index.ts"],
       "@org/dependency-injection-manager": [
         "shared/dependency-injection-manager/src/index.ts"
       ],

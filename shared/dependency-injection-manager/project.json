@@ -3,21 +3,5 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "shared/dependency-injection-manager/src",
   "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/shared/dependency-injection-manager",
-        "main": "shared/dependency-injection-manager/src/index.ts",
-        "tsConfig": "shared/dependency-injection-manager/tsconfig.lib.json",
-        "assets": ["shared/dependency-injection-manager/*.md"]
-      }
-    },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs dependency-injection-manager {args.ver} {args.tag}",
-      "dependsOn": ["build"]
-    }
-  },
   "tags": []
 }

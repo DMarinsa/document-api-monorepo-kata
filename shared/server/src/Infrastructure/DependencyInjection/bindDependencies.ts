@@ -1,8 +1,7 @@
-import { Logger } from "@org/types";
-import { Container, } from "inversify";
 import { WinstonLogger } from "../Loggers/WinstonLogger";
+import { DependencyInjectionManager } from "@org/dependency-injection";
 
 
-export const bindDepedencies = (projectContainer: Container) => {
-    projectContainer.bind<Logger>('Logger').to(WinstonLogger);
+export const bindDepedencies = (dependencyInjectionManager: DependencyInjectionManager) => {
+    dependencyInjectionManager.bindToContainer('Logger', WinstonLogger);
 };

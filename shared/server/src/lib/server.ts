@@ -9,17 +9,19 @@ import { ErrorRouteHandler } from './ErrorRouteHandler';
 import { hostname } from 'os';
 import { ErrorHandler } from './ErrorHandler';
 import { bindDepedencies } from '../Infrastructure/DependencyInjection/bindDependencies';
-import container from '@org/dependency-injection';
+import { DependencyInjectionManager } from '@org/dependency-injection';
 
 export class Server {
   private httpServer?: http.Server;
   private app: Koa;
   private logger: Logger;
+  public dependencyInjectionManager: DependencyInjectionManager;
 
-  constructor(private readonly port: number, router: Router, dependencies) {
-    bindDepedencies(container, dependencies);
+  constructor(private readonly port: number, router: Router) {
+    this.dependencyInjectionManager = new DependencyInjectionManager();
+    bindDepedencies(this.dependencyInjectionManager);
     this.app = new Koa();
-    this.logger = container.get('Logger') as Logger;
+    this.logger = this.dependencyInjectionManager.getDependency('Logger') as Logger;
     this.app.silent = true;
     this.app.use(helmet.xssFilter());
     this.app.use(helmet.noSniff());

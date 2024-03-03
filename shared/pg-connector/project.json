@@ -3,17 +3,5 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "shared/pg-connector/src",
   "projectType": "library",
-  "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/shared/pg-connector",
-        "main": "shared/pg-connector/src/index.ts",
-        "tsConfig": "shared/pg-connector/tsconfig.lib.json",
-        "assets": ["shared/pg-connector/*.md"]
-      }
-    }
-  },
   "tags": []
 }
