@@ -1,1 +1,1 @@
-export * from './lib/dependency-injection';
+export * from './lib/container';
