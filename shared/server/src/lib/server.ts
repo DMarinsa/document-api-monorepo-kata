@@ -6,18 +6,20 @@ import helmet from 'koa-helmet';
 import Router from 'koa-router';
 import cors from 'koa2-cors';
 import { ErrorRouteHandler } from './ErrorRouteHandler';
-import { WinstonLogger } from '../Infrastructure/Loggers/WinstonLogger';
 import { hostname } from 'os';
 import { ErrorHandler } from './ErrorHandler';
+import { bindDepedencies } from '../Infrastructure/DependencyInjection/bindDependencies';
+import container from '@org/dependency-injection';
 
 export class Server {
   private httpServer?: http.Server;
   private app: Koa;
   private logger: Logger;
 
-  constructor(private readonly port: number, router: Router) {
+  constructor(private readonly port: number, router: Router, dependencies) {
+    bindDepedencies(container, dependencies);
     this.app = new Koa();
-    this.logger = new WinstonLogger();
+    this.logger = container.get('Logger') as Logger;
     this.app.silent = true;
     this.app.use(helmet.xssFilter());
     this.app.use(helmet.noSniff());
