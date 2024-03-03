@@ -1,11 +1,10 @@
 import { Document, Status } from "@org/types";
-import { DocumentRepository } from "../Domain/DocumentRepository";
+import { DocumentRepository } from "../../Domain/DocumentRepository";
 import { PGConnector } from "shared/pg-connector";
 
 export class PgDocumentRepository implements DocumentRepository {
-    constructor(private pgConnector: PGConnector) {
-        
-    }
+    constructor(private pgConnector: PGConnector) {}
+    
     async findPublishedDocument(id: string): Promise<Document> {
         try {
             const query = `

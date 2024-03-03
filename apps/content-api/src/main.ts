@@ -1,14 +1,15 @@
-import koa from 'koa';
+import { Server } from '@org/server';
+import Router from 'koa-router';
+import { registerRoutes } from './Documents/Infrastructure/routes/registerRoutes';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3001;
+try {
+  const port = parseInt('3001');
+  const router = new Router();
 
-const app = new koa();
+  registerRoutes(router);
 
-app.use(async (ctx) => {
-  ctx.body = { message: 'Hello API' };
-});
-
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`);
-});
+  new Server(port, router).start();
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
