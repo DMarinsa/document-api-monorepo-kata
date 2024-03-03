@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { Logger } from '@org/types';
 import * as http from 'http';
 import Koa from 'koa';
