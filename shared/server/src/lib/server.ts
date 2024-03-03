@@ -9,7 +9,7 @@ import { ErrorRouteHandler } from './ErrorRouteHandler';
 import { hostname } from 'os';
 import { ErrorHandler } from './ErrorHandler';
 import { bindDepedencies } from '../Infrastructure/DependencyInjection/bindDependencies';
-import { DependencyInjectionManager } from '@org/dependency-injection';
+import { DependencyInjectionManager } from '@org/dependency-injection-manager';
 
 export class Server {
   private httpServer?: http.Server;

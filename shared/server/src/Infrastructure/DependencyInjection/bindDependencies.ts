@@ -1,5 +1,5 @@
+import { DependencyInjectionManager } from "@org/dependency-injection-manager";
 import { WinstonLogger } from "../Loggers/WinstonLogger";
-import { DependencyInjectionManager } from "@org/dependency-injection";
 
 
 export const bindDepedencies = (dependencyInjectionManager: DependencyInjectionManager) => {
