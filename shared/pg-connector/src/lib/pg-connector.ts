@@ -1,12 +1,15 @@
 // postgresPool.ts
-import { Pool, PoolConfig, QueryConfig, QueryResult, QueryResultRow } from 'pg';
+import { inject, injectable } from 'inversify';
+import { Pool, PoolConfig, QueryResult } from 'pg';
 
 export type PostgresPoolOptions = PoolConfig
 
+@injectable()
 export class PGConnector {
   private pool: Pool;
 
-  constructor(options: PostgresPoolOptions) {
+  constructor(@inject('PGConnectionConfig')
+    options: PostgresPoolOptions) {
     this.pool = new Pool(options);
   }
 
