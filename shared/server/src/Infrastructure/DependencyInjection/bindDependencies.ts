@@ -1,5 +1,6 @@
 import { DependencyInjectionManager } from "@org/dependency-injection-manager";
 import { WinstonLogger } from "../Loggers/WinstonLogger";
+import { PGConnector } from "@org/pg-connector";
 
 
 export const bindDepedencies = (dependencyInjectionManager: DependencyInjectionManager) => {
@@ -7,4 +8,5 @@ export const bindDepedencies = (dependencyInjectionManager: DependencyInjectionM
         url: process.env['DATABASE_URL'],
     })
     dependencyInjectionManager.bindToContainer('Logger', WinstonLogger);
+    dependencyInjectionManager.bindToContainer('PgConnector', PGConnector);
 };
