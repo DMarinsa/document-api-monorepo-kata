@@ -1,0 +1,8 @@
+{
+  "name": "dependency-injection",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "shared/dependency-injection/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}
