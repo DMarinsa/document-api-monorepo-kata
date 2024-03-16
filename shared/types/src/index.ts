@@ -1,5 +1,6 @@
 export * from './lib/Document';
 export * from './lib/DocumentVersion';
+export * from './lib/DocumentResponse';
 export * from './lib/Status';
 export * from './lib/User';
 export * from './lib/Domain/Logger';
